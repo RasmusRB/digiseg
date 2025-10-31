@@ -4,12 +4,17 @@ import type { AudienceDatum } from "@/store/api/types";
 interface AudienceListProps {
   country: string;
   platform: string;
+  searchTerm: string;
 }
 
-export function AudienceList({ country, platform }: AudienceListProps) {
-  // Fetch audiences based on selected country and platform
+export function AudienceList({
+  country,
+  platform,
+  searchTerm,
+}: AudienceListProps) {
+  // Fetch audiences based on selected country, platform, and search term
   const { data, isLoading, error, isFetching } = useGetAudiencesQuery(
-    { country, platform },
+    { country, platform, search: searchTerm },
     {
       refetchOnMountOrArgChange: true,
       skip: !country || !platform,

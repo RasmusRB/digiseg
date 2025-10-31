@@ -25,13 +25,14 @@ export const digisegApi = createApi({
     }),
     getAudiences: builder.query<
       AudiencesResponse,
-      { country: string; platform: string }
+      { country: string; platform: string; search?: string }
     >({
-      query: ({ country, platform }) => ({
+      query: ({ country, platform, search }) => ({
         url: "/audiences",
         params: {
           country,
           platform,
+          ...(search && search.trim() && { search: search.trim() }),
         },
       }),
       providesTags: ["Audiences"],

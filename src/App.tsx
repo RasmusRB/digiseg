@@ -3,11 +3,13 @@ import { CountrySelector } from "./components/CountrySelector";
 import { PlatformSelector } from "./components/PlatformSelector";
 import { AudienceList } from "./components/AudienceList";
 import { Label } from "./components/ui/label";
+import { SearchAudienceList } from "./components/SearchAudienceList";
 
 function App() {
   // State for selected country and platform
   const [selectedCountry, setSelectedCountry] = useState<string>("");
   const [selectedPlatform, setSelectedPlatform] = useState<string>("");
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   return (
     <div className="container mx-auto p-6 max-w-6xl">
@@ -31,12 +33,22 @@ function App() {
                 onValueChange={setSelectedPlatform}
               />
             </div>
-            {/* TODO: Add search functionality */}
+            <div className="space-y-2 flex-1">
+              <Label className="text-sm font-medium">Search Audience</Label>
+              <SearchAudienceList
+                searchTerm={searchTerm}
+                handleSearchChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
           </div>
         </div>
 
         <div className="border-t pt-6">
-          <AudienceList country={selectedCountry} platform={selectedPlatform} />
+          <AudienceList
+            country={selectedCountry}
+            platform={selectedPlatform}
+            searchTerm={searchTerm}
+          />
         </div>
       </div>
     </div>
