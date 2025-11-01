@@ -17,7 +17,7 @@ function App() {
         <div>
           <h1 className="text-3xl font-bold mb-6">Digiseg Audiences</h1>
 
-          <div className="flex gap-4 items-center">
+          <div className="flex flex-col md:flex-row gap-4 md:items-center">
             <div className="space-y-2">
               <Label className="text-sm font-medium">Country</Label>
               <CountrySelector
@@ -33,7 +33,7 @@ function App() {
                 onValueChange={setSelectedPlatform}
               />
             </div>
-            <div className="space-y-2 flex-1">
+            <div className="space-y-2 md:flex-1">
               <Label className="text-sm font-medium">Search Audience</Label>
               <SearchAudienceList
                 searchTerm={searchTerm}
